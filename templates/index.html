@@ -1,0 +1,370 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SmartResume AI | Resume Intelligence</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+    <!-- ================= NAVBAR ================= -->
+
+    <header class="navbar">
+
+        <div class="logo">
+            SmartResume<span>AI</span>
+        </div>
+
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#features">Features</a>
+            <a href="#how-it-works">How It Works</a>
+            <a href="#about">About</a>
+        </nav>
+
+        <!-- UPDATED: Navigate to the Analyze page -->
+        <a href="{{ url_for('analyze') }}" class="nav-button">
+            Analyze Resume
+        </a>
+
+    </header>
+
+
+    <!-- ================= HERO ================= -->
+
+    <main>
+
+        <section class="hero" id="home">
+
+            <div class="hero-content">
+
+                <div class="badge">
+                    AI-POWERED RESUME ANALYSIS
+                </div>
+
+                <h1>
+                    Build a Resume That
+                    <span>Gets Noticed.</span>
+                </h1>
+
+                <p>
+                    Analyze your resume, discover missing skills,
+                    measure your job compatibility and get a
+                    personalized career improvement roadmap.
+                </p>
+
+                <div class="hero-buttons">
+
+                    <!-- UPDATED: Navigate to the Analyze page -->
+                    <a href="{{ url_for('analyze') }}"
+                       class="primary-btn">
+                        Analyze My Resume →
+                    </a>
+
+                    <button class="secondary-btn"
+                            type="button"
+                            onclick="scrollToFeatures()">
+                        Explore Features
+                    </button>
+
+                </div>
+
+                <div class="hero-stats">
+
+                    <div>
+                        <strong>ATS</strong>
+                        <small>Compatibility</small>
+                    </div>
+
+                    <div>
+                        <strong>Skills</strong>
+                        <small>Gap Analysis</small>
+                    </div>
+
+                    <div>
+                        <strong>Career</strong>
+                        <small>Roadmap</small>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ================= ANALYSIS CARD ================= -->
+
+            <div class="hero-card">
+
+                <div class="card-header">
+                    <span>Resume Analysis</span>
+
+                    <span class="status">
+                        ● Ready
+                    </span>
+                </div>
+
+                <div class="score-section">
+
+                    <div class="score-circle">
+                        <strong>82%</strong>
+                        <span>Resume Score</span>
+                    </div>
+
+                </div>
+
+                <div class="analysis-row">
+                    <span>ATS Compatibility</span>
+                    <strong>88%</strong>
+                </div>
+
+                <div class="analysis-row">
+                    <span>Skills Match</span>
+                    <strong>84%</strong>
+                </div>
+
+                <div class="analysis-row">
+                    <span>Experience</span>
+                    <strong>78%</strong>
+                </div>
+
+                <div class="skills">
+
+                    <span class="skill good">
+                        ✓ Python
+                    </span>
+
+                    <span class="skill good">
+                        ✓ SQL
+                    </span>
+
+                    <span class="skill good">
+                        ✓ Excel
+                    </span>
+
+                    <span class="skill missing">
+                        + Power BI
+                    </span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= FEATURES ================= -->
+
+        <section class="features-section" id="features">
+
+            <div class="section-heading">
+
+                <span>SMART ANALYSIS</span>
+
+                <h2>
+                    Everything You Need to
+                    Improve Your Resume
+                </h2>
+
+                <p>
+                    Go beyond simple resume checking.
+                    Understand exactly where you stand
+                    and what you should improve.
+                </p>
+
+            </div>
+
+            <div class="feature-grid">
+
+                <div class="feature-card">
+
+                    <div class="feature-icon">📊</div>
+
+                    <h3>Resume Score</h3>
+
+                    <p>
+                        Get a clear score based on ATS
+                        compatibility, skills, experience
+                        and other important factors.
+                    </p>
+
+                </div>
+
+                <div class="feature-card">
+
+                    <div class="feature-icon">🎯</div>
+
+                    <h3>Job Matching</h3>
+
+                    <p>
+                        Compare your resume against your
+                        target job and understand your
+                        compatibility.
+                    </p>
+
+                </div>
+
+                <div class="feature-card">
+
+                    <div class="feature-icon">🧩</div>
+
+                    <h3>Skill Gap Analysis</h3>
+
+                    <p>
+                        Identify important skills you already
+                        have and the skills you still need.
+                    </p>
+
+                </div>
+
+                <div class="feature-card">
+
+                    <div class="feature-icon">🛣️</div>
+
+                    <h3>Career Roadmap</h3>
+
+                    <p>
+                        Get a personalized roadmap showing
+                        what to learn next.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= HOW IT WORKS ================= -->
+
+        <section class="how-section" id="how-it-works">
+
+            <div class="section-heading">
+
+                <span>HOW IT WORKS</span>
+
+                <h2>
+                    From Resume to
+                    Career Roadmap
+                </h2>
+
+            </div>
+
+            <div class="steps">
+
+                <div class="step">
+
+                    <div class="step-number">01</div>
+
+                    <h3>Upload Resume</h3>
+
+                    <p>
+                        Upload your existing resume
+                        in PDF or DOCX format.
+                    </p>
+
+                </div>
+
+                <div class="step">
+
+                    <div class="step-number">02</div>
+
+                    <h3>Select Your Goal</h3>
+
+                    <p>
+                        Choose the job or career
+                        you want to target.
+                    </p>
+
+                </div>
+
+                <div class="step">
+
+                    <div class="step-number">03</div>
+
+                    <h3>Analyze</h3>
+
+                    <p>
+                        SmartResume analyzes your
+                        profile and compares it.
+                    </p>
+
+                </div>
+
+                <div class="step">
+
+                    <div class="step-number">04</div>
+
+                    <h3>Improve</h3>
+
+                    <p>
+                        Follow your personalized
+                        improvement roadmap.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= ABOUT ================= -->
+
+        <section class="about-section" id="about">
+
+            <div>
+
+                <span>SMARTER CAREER DECISIONS</span>
+
+                <h2>
+                    Don't Just Submit a Resume.
+                    Understand It.
+                </h2>
+
+                <p>
+                    SmartResume AI helps students and
+                    professionals understand how well
+                    their resume matches their career goals.
+                </p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <div class="logo">
+            SmartResume<span>AI</span>
+        </div>
+
+        <p>
+            Resume intelligence for smarter
+            career decisions.
+        </p>
+
+        <p>
+            © 2026 SmartResume AI
+        </p>
+
+    </footer>
+
+
+    <!-- ================= JAVASCRIPT ================= -->
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Analyze Resume | SmartResume AI</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/analyze.css') }}">
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+
+        <div class="logo">
+            SmartResume<span>AI</span>
+        </div>
+
+        <a href="/" class="back-home">
+            ← Back to Home
+        </a>
+
+    </nav>
+
+
+    <!-- MAIN CONTENT -->
+
+    <main class="analyze-container">
+
+        <!-- PAGE HEADER -->
+
+        <div class="page-header">
+
+            <span class="step-label">
+                STEP 1 • RESUME ANALYSIS
+            </span>
+
+            <h1>
+                Analyze Your Resume
+            </h1>
+
+            <p>
+                Upload your resume and select the job you want to target.
+                SmartResume AI will analyze your profile and identify
+                opportunities for improvement.
+            </p>
+
+        </div>
+
+
+        <!-- ANALYSIS CARD -->
+
+        <div class="analysis-card">
+
+
+            <!-- RESUME UPLOAD -->
+
+            <section class="form-section">
+
+                <div class="section-title">
+
+                    <div class="section-number">
+                        01
+                    </div>
+
+                    <div>
+                        <h2>Upload Your Resume</h2>
+
+                        <p>
+                            PDF or DOCX files • Maximum 10 MB
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <!-- DROP AREA -->
+
+                <div class="upload-area" id="uploadArea">
+
+                    <div class="upload-icon">
+                        📄
+                    </div>
+
+                    <h3>
+                        Drag & Drop your resume here
+                    </h3>
+
+                    <p>
+                        or
+                    </p>
+
+                    <label for="resumeFile" class="browse-button">
+                        Browse Files
+                    </label>
+
+                    <input
+                        type="file"
+                        id="resumeFile"
+                        accept=".pdf,.docx"
+                        hidden
+                    >
+
+                    <div class="file-types">
+                        Supported: PDF, DOCX
+                    </div>
+
+                </div>
+
+
+                <!-- SELECTED FILE -->
+
+                <div class="selected-file" id="selectedFile">
+
+                    <div class="file-icon">
+                        📄
+                    </div>
+
+                    <div class="file-info">
+
+                        <strong id="fileName">
+                            Resume.pdf
+                        </strong>
+
+                        <span id="fileSize">
+                            0 KB
+                        </span>
+
+                    </div>
+
+                    <button
+                        type="button"
+                        id="removeFile"
+                        class="remove-file">
+                        ✕
+                    </button>
+
+                </div>
+
+            </section>
+
+
+            <!-- JOB SELECTION -->
+
+            <section class="form-section">
+
+                <div class="section-title">
+
+                    <div class="section-number">
+                        02
+                    </div>
+
+                    <div>
+                        <h2>Select Your Target Job</h2>
+
+                        <p>
+                            Tell us which career opportunity you're targeting.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="job-grid">
+
+                    <button
+                        type="button"
+                        class="job-card"
+                        data-job="Software Developer">
+
+                        <span class="job-icon">💻</span>
+
+                        <span>
+                            <strong>Software Developer</strong>
+                            <small>Programming & Software</small>
+                        </span>
+
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="job-card"
+                        data-job="Data Analyst">
+
+                        <span class="job-icon">📊</span>
+
+                        <span>
+                            <strong>Data Analyst</strong>
+                            <small>Data & Analytics</small>
+                        </span>
+
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="job-card"
+                        data-job="Electronics Engineer">
+
+                        <span class="job-icon">⚡</span>
+
+                        <span>
+                            <strong>Electronics Engineer</strong>
+                            <small>Electronics & Hardware</small>
+                        </span>
+
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="job-card"
+                        data-job="Robotics Engineer">
+
+                        <span class="job-icon">🤖</span>
+
+                        <span>
+                            <strong>Robotics Engineer</strong>
+                            <small>Robotics & Automation</small>
+                        </span>
+
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="job-card"
+                        data-job="Project Coordinator">
+
+                        <span class="job-icon">📋</span>
+
+                        <span>
+                            <strong>Project Coordinator</strong>
+                            <small>Management & Coordination</small>
+                        </span>
+
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="job-card"
+                        data-job="Academic Coordinator">
+
+                        <span class="job-icon">🎓</span>
+
+                        <span>
+                            <strong>Academic Coordinator</strong>
+                            <small>Education & Leadership</small>
+                        </span>
+
+                    </button>
+
+                </div>
+
+
+                <!-- CUSTOM JOB -->
+
+                <div class="custom-job">
+
+                    <label for="customJob">
+                        Or enter your own target job
+                    </label>
+
+                    <input
+                        type="text"
+                        id="customJob"
+                        placeholder="Example: Python Developer">
+
+                </div>
+
+            </section>
+
+
+            <!-- ACTION -->
+
+            <section class="action-section">
+
+                <div class="selected-info">
+
+                    <span>Selected Job:</span>
+
+                    <strong id="selectedJob">
+                        Not selected
+                    </strong>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="analyze-button"
+                    id="analyzeButton">
+
+                    Analyze My Resume
+
+                    <span>→</span>
+
+                </button>
+
+            </section>
+
+
+        </div>
+
+    </main>
+
+
+    <script src="{{ url_for('static', filename='js/analyze.js') }}"></script>
+
+</body>
+
+</html>

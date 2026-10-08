@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Resume Analysis | SmartResume AI</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/results.css') }}">
+
+</head>
+
+
+<body>
+
+
+    <!-- NAVBAR -->
+
+    <nav class="navbar">
+
+        <div class="logo">
+            SmartResume<span>AI</span>
+        </div>
+
+        <a href="/analyze" class="back-link">
+            ← Analyze Another Resume
+        </a>
+
+    </nav>
+
+
+
+    <!-- MAIN -->
+
+    <main class="results-container">
+
+
+        <div class="page-header">
+
+            <span class="result-label">
+                RESUME ANALYSIS COMPLETE
+            </span>
+
+            <h1>
+                Your Resume Analysis
+            </h1>
+
+            <p>
+                Here's what we found in your resume.
+            </p>
+
+        </div>
+
+
+
+        <!-- RESUME INFO -->
+
+        <div class="resume-info-card">
+
+            <div class="resume-icon">
+                📄
+            </div>
+
+            <div>
+
+                <strong>
+                    {{ filename }}
+                </strong>
+
+                <p>
+                    Target Job:
+                    <span>{{ target_job }}</span>
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- ATS SCORE -->
+
+        <section class="ats-section">
+
+            <div class="ats-score">
+
+                <span class="ats-label">
+                    ATS RESUME SCORE
+                </span>
+
+                <strong>
+                    {{ analysis.ats_score }}%
+                </strong>
+
+                <p>
+                    Overall resume strength
+                </p>
+
+            </div>
+
+
+            <div class="ats-details">
+
+                <h2>
+                    Resume Performance
+                </h2>
+
+                <p>
+                    Your resume has been analyzed against
+                    the requirements for
+                    <strong>{{ target_job }}</strong>.
+                </p>
+
+
+                <div class="performance-row">
+
+                    <span>Job Match</span>
+
+                    <strong>
+                        {{ analysis.job_match.score }}%
+                    </strong>
+
+                </div>
+
+
+                <div class="progress-bar">
+
+                    <div
+                        style="width: {{ analysis.job_match.score }}%;">
+                    </div>
+
+                </div>
+
+
+                <div class="performance-row">
+
+                    <span>Skills Detected</span>
+
+                    <strong>
+                        {{ analysis.skills|length }}
+                    </strong>
+
+                </div>
+
+
+                <div class="performance-row">
+
+                    <span>Experience</span>
+
+                    <strong>
+                        {{ analysis.experience }} years
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- STRENGTHS -->
+
+        <section class="result-section">
+
+            <div class="result-heading">
+
+                <span class="heading-icon">
+                    ✓
+                </span>
+
+                <div>
+
+                    <h2>
+                        Resume Strengths
+                    </h2>
+
+                    <p>
+                        What's working well in your resume
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="result-list">
+
+                {% for strength in analysis.strengths %}
+
+                    <div class="result-item strength-item">
+
+                        <span>✓</span>
+
+                        <p>
+                            {{ strength }}
+                        </p>
+
+                    </div>
+
+                {% endfor %}
+
+            </div>
+
+        </section>
+
+
+        <!-- WEAKNESSES -->
+
+        <section class="result-section">
+
+            <div class="result-heading">
+
+                <span class="heading-icon warning">
+                    !
+                </span>
+
+                <div>
+
+                    <h2>
+                        Areas to Improve
+                    </h2>
+
+                    <p>
+                        Things that may reduce your resume strength
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="result-list">
+
+                {% for weakness in analysis.weaknesses %}
+
+                    <div class="result-item weakness-item">
+
+                        <span>!</span>
+
+                        <p>
+                            {{ weakness }}
+                        </p>
+
+                    </div>
+
+                {% endfor %}
+
+            </div>
+
+        </section>
+
+
+        <!-- SUGGESTIONS -->
+
+        <section class="result-section">
+
+            <div class="result-heading">
+
+                <span class="heading-icon">
+                    💡
+                </span>
+
+                <div>
+
+                    <h2>
+                        Improvement Suggestions
+                    </h2>
+
+                    <p>
+                        Practical ways to improve your resume
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="result-list">
+
+                {% for suggestion in analysis.suggestions %}
+
+                    <div class="result-item suggestion-item">
+
+                        <span>→</span>
+
+                        <p>
+                            {{ suggestion }}
+                        </p>
+
+                    </div>
+
+                {% endfor %}
+
+            </div>
+
+        </section>
+
+
+
+        <!-- MATCHED SKILLS -->
+
+        <section class="skills-card">
+
+            <h2>
+                ✓ Matching Skills
+            </h2>
+
+
+            <div class="skill-list">
+
+                {% for skill in analysis.job_match.matched %}
+
+                    <span class="skill matched">
+                        {{ skill }}
+                    </span>
+
+                {% else %}
+
+                    <p>No matching skills detected yet.</p>
+
+                {% endfor %}
+
+            </div>
+
+        </section>
+
+
+
+        <!-- MISSING SKILLS -->
+
+        <section class="skills-card">
+
+            <h2>
+                ⚠ Missing Skills
+            </h2>
+
+
+            <div class="skill-list">
+
+                {% for skill in analysis.job_match.missing %}
+
+                    <span class="skill missing">
+                        {{ skill }}
+                    </span>
+
+                {% else %}
+
+                    <p>
+                        Excellent! No major missing skills detected.
+                    </p>
+
+                {% endfor %}
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ==========================================
+             RECOMMENDED CAREER PATHS
+             ========================================== -->
+
+        <section class="career-recommendations">
+
+            <div class="result-heading">
+
+                <span class="heading-icon">
+                    🎯
+                </span>
+
+                <div>
+
+                    <h2>
+                        Recommended Career Paths
+                    </h2>
+
+                    <p>
+                        Career options that match the skills
+                        detected in your resume
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="career-list">
+
+                {% for career in analysis.career_recommendations %}
+
+                    <div class="career-card">
+
+                        <div class="career-info">
+
+                            <div class="career-rank">
+                                {{ loop.index }}
+                            </div>
+
+                            <div>
+
+                                <h3>
+                                    {{ career.career }}
+                                </h3>
+
+                                <p>
+                                    {{ career.matched_skills|length }}
+                                    matching skills detected
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="career-score">
+
+                            <strong>
+                                {{ career.score }}%
+                            </strong>
+
+                            <span>
+                                Match
+                            </span>
+
+                        </div>
+
+
+                        <div class="career-progress">
+
+                            <div
+                                style="width: {{ career.score }}%;">
+                            </div>
+
+                        </div>
+
+
+                        {% if career.matched_skills %}
+
+                            <div class="career-skills">
+
+                                {% for skill in career.matched_skills %}
+
+                                    <span>
+                                        {{ skill }}
+                                    </span>
+
+                                {% endfor %}
+
+                            </div>
+
+                        {% endif %}
+
+                    </div>
+
+                {% endfor %}
+
+            </div>
+
+        </section>
+
+
+
+        <!-- CAREER ROADMAP -->
+
+        <section class="roadmap-section">
+
+            <div class="result-heading">
+
+                <span class="heading-icon">
+                    🎯
+                </span>
+
+                <div>
+
+                    <h2>
+                        Your Personalized Career Roadmap
+                    </h2>
+
+                    <p>
+                        Recommended learning steps for
+                        {{ target_job }}
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="roadmap">
+
+                {% for step in analysis.career_roadmap %}
+
+                    <div class="roadmap-step">
+
+
+                        <div class="roadmap-number">
+
+                            {{ loop.index }}
+
+                        </div>
+
+
+                        <div class="roadmap-content">
+
+                            <div class="roadmap-title">
+
+                                <h3>
+                                    {{ step.title }}
+                                </h3>
+
+                                <span>
+                                    {{ step.level }}
+                                </span>
+
+                            </div>
+
+
+                            <p>
+                                {{ step.action }}
+                            </p>
+
+
+                            <div class="project-box">
+
+                                <strong>
+                                    🛠 Recommended Project
+                                </strong>
+
+                                <p>
+                                    {{ step.project }}
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                {% endfor %}
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+</body>
+
+</html>
